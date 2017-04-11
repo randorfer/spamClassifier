@@ -23,7 +23,7 @@ def main(beta=1.0):
     results = {}
     for classifier_name, clf in classifiers.iteritems():
         print "evaluating %s" % classifier_name
-        classification_result = evaluate_classifier(clf, number_of_top_features=10,fscore_beta=beta)
+        classification_result = evaluate_classifier(clf, classifier_name, number_of_top_features=10,fscore_beta=beta)
         results[classifier_name] = classification_result
         print 'Accuracy: %0.5f, AUC: %0.5f' % (classification_result[0], classification_result[1])
         print classification_result[3]
@@ -36,11 +36,11 @@ def main(beta=1.0):
         print classification_result[8]
         index = 1
         for feature in classification_result[2]:
-           if feature != -1:
-               if feature[0] not in __noteable_features__:
-                   __noteable_features__.append(feature[0])
-               print "Top [%s] feature: Name [%s] weight [%0.5f]" % (index, feature[0], feature[1])
-               index+=1
+            if feature != -1:
+                if feature[0] not in __noteable_features__:
+                    __noteable_features__.append(feature[0])
+                print "Top [%s] feature: Name [%s] weight [%0.5f]" % (index, feature[0], feature[1])
+                index+=1
 
 if __name__ == "__main__":
     '''
